@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>滴答清单</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1>滴答清单 <small>更有效的完成工作</small></h1>
+    </div>
+
+    <p>
+        <a href="/qingdan/form" class="btn btn-default">创建清单</a>
+    </p>
+
+    <ul class="list-group">
+        <li class="list-group-item" th:each="item : ${qingdanList}">
+            <span class="badge">14</span>
+            <a th:href="@{'/todo/'+${item.id}}" th:text="${item.name}"></a>
+            <a th:href="@{'/qingdan/del/'+${item.id}}">删除清单</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
