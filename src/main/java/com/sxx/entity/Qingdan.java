@@ -18,17 +18,12 @@ public class Qingdan {
     public Qingdan() {
     }
 
-    public Qingdan(String name) {
-        this.name = name;
-    }
-
     public Qingdan(String name, Integer status) {
         this.name = name;
         this.status = status;
     }
 
     public Integer getId() {
-
         return id;
     }
 
@@ -51,5 +46,14 @@ public class Qingdan {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Qingdan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

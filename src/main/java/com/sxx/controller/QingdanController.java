@@ -25,11 +25,12 @@ public class QingdanController {
 
     @PostMapping("/qingdan")
     public Result saveQingdan(Qingdan qingdan) {
+        System.out.println(qingdan);
         return ResultUtil.successResult(service.saveQingdan(qingdan));
     }
 
-    @DeleteMapping("/qingdan")
-    public Result delQingdan(Integer id) {
+    @DeleteMapping("/qingdan/{id}")
+    public Result delQingdan(@PathVariable Integer id) {
         service.delQingdan(id);
         return ResultUtil.successResult();
     }

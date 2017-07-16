@@ -29,6 +29,8 @@ public class QingdanServiceImpl implements QingdanService {
 
     @Override
     public void delQingdan(Integer id) {
-        repository.delete(id);
+        if (repository.exists(id)) {
+            repository.delete(id);
+        }
     }
 }
