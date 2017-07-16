@@ -1,42 +1,36 @@
 package com.sxx.controller;
 
-import com.sxx.entity.QingdanEntity;
-import com.sxx.repository.QingdanRepository;
+import com.sxx.entity.Qingdan;
+import com.sxx.entity.Result;
+import com.sxx.service.QingdanService;
+import com.sxx.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by songxx1989 on 2017/7/15.
  */
-@Controller
+@RestController
 public class QingdanController {
     @Autowired
-    private QingdanRepository qingdanRepository;
+    private QingdanService service;
 
-    @GetMapping({"/qingdan", "/"})
-    public String qingdan(Model model) {
-        List<QingdanEntity> qingdanEntityList = qingdanRepository.findAll();
-        model.addAttribute("qingdanList", qingdanEntityList);
-        return "qingdan";
+    @GetMapping("/qingdan")
+    public Result findQingdanList() {
+        List<Qingdan> qingdanList = service.findQingdanList();
+        return ResultUtil.successResult(qingdanList);
     }
 
-    @GetMapping("/qingdan/list")
-    public String qingdanList(Model model) {
-        List<QingdanEntity> qingdanEntityList = qingdanRepository.findAll();
-        model.addAttribute("qingdanList", qingdanEntityList);
-        return "qingdan-list";
+    @PostMapping("/qingdan")
+    public Result saveQingdan(Qingdan qingdan) {
+        return ResultUtil.successResult(service.saveQingdan(qingdan));
     }
 
-    @GetMapping("/qingdan/del/{id}")
-    public String qingdanDel(@PathVariable("id") int id) {
-        qingdanRepository.delete(id);
-        return "redirect:/qingdan/list";
+    @DeleteMapping("/qingdan")
+    public Result delQingdan(Integer id) {
+        service.delQingdan(id);
+        return ResultUtil.successResult();
     }
 }
