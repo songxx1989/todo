@@ -24,8 +24,7 @@ public class QingdanController {
     }
 
     @PostMapping("/qingdan")
-    public Result saveQingdan(Qingdan qingdan) {
-        System.out.println(qingdan);
+    public Result saveQingdan(@ModelAttribute Qingdan qingdan) {
         return ResultUtil.successResult(service.saveQingdan(qingdan));
     }
 
