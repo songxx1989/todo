@@ -3,16 +3,26 @@ package com.sxx.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @NotNull
     private String username;
+
+    @NotNull
     private String password;
+
+    @NotNull
     private String account;
-    private String avatar;
+
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -46,11 +56,12 @@ public class User {
         this.account = account;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
+
 }

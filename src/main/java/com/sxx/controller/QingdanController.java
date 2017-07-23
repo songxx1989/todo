@@ -18,19 +18,29 @@ public class QingdanController {
     private QingdanService service;
 
     @GetMapping("/qingdan")
-    public Result findQingdanList() {
-        List<Qingdan> qingdanList = service.findQingdanList();
+    public Result findAll() {
+        List<Qingdan> qingdanList = service.findAll();
         return ResultUtil.successResult(qingdanList);
     }
 
     @PostMapping("/qingdan")
-    public Result saveQingdan(@ModelAttribute Qingdan qingdan) {
-        return ResultUtil.successResult(service.saveQingdan(qingdan));
+    public Result save(@ModelAttribute Qingdan qingdan) {
+        return ResultUtil.successResult(service.save(qingdan));
     }
 
     @DeleteMapping("/qingdan/{id}")
-    public Result delQingdan(@PathVariable Integer id) {
-        service.delQingdan(id);
+    public Result del(@PathVariable Integer id) {
+        service.del(id);
         return ResultUtil.successResult();
+    }
+
+    @GetMapping("/qingdan/{id}")
+    public Result findOne(@PathVariable int id) {
+        return ResultUtil.successResult(service.findOne(id));
+    }
+
+    @PatchMapping("/qingdan/{id}/{users}")
+    public Result updateUsers(@PathVariable int id, @PathVariable String users){
+        return ResultUtil.successResult(service.updateUsers(id, users));
     }
 }
