@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by songxx1989 on 2017/7/15.
  */
 @Entity
-public class Qingdan {
+public class Inventory {
     @Id
     @GeneratedValue
     private Integer id;
@@ -26,10 +26,10 @@ public class Qingdan {
 
     private String users;
 
-    public Qingdan() {
+    public Inventory() {
     }
 
-    public Qingdan(String name, Integer status) {
+    public Inventory(String name, Integer status) {
         this.name = name;
         this.status = status;
     }
@@ -69,7 +69,7 @@ public class Qingdan {
 
     @Override
     public String toString() {
-        return "Qingdan{" +
+        return "Inventory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", status=" + status +

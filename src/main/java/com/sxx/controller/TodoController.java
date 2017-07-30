@@ -1,44 +1,33 @@
 package com.sxx.controller;
 
+import com.sxx.entity.Result;
 import com.sxx.entity.Todo;
 import com.sxx.repository.TodoRepository;
+import com.sxx.service.TodoService;
+import com.sxx.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by songxx1989 on 2017/7/15.
  */
-@Controller
+@RestController
+@RequestMapping("/todo")
 public class TodoController {
     @Autowired
-    private TodoRepository todoRepository;
+    private TodoService service;
 
-    @GetMapping("/todo/{qid}")
-    public String todoList(@PathVariable("qid") int qid, Model model) {
-        List<Todo> todoList = todoRepository.findByQid(qid);
-        model.addAttribute("todoList", todoList);
-        model.addAttribute("qid", qid);
-        return "todo";
+    @GetMapping("/{iid}")
+    public Result findByIid(@PathVariable("iid") int iid) {
+        return ResultUtil.successResult(service.findByIid(iid));
     }
 
-    @GetMapping("/todo/form/{qid}")
-    public String todoForm(@PathVariable("qid") int qid, Model model) {
-        Todo todo = new Todo();
-        todo.setQid(qid);
-        model.addAttribute("todo", todo);
-        return "todo-form";
-    }
-
-    @PostMapping("/todo/form")
-    public String saveTodo(Todo todo) {
-        todo.setStatus(0);
-        todoRepository.save(todo);
-        return "redirect:/todo/" + todo.getQid();
+    @PostMapping
+    public Result saveTodo(Todo todo) {
+        return ResultUtil.successResult(service.saveTodo(todo));
     }
 }

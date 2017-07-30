@@ -1,10 +1,10 @@
 package com.sxx.service.impl;
 
-import com.sxx.entity.Qingdan;
+import com.sxx.entity.Inventory;
 import com.sxx.entity.User;
-import com.sxx.repository.QingdanRepository;
+import com.sxx.repository.InventoryRepository;
 import com.sxx.repository.UserRepository;
-import com.sxx.service.QingdanService;
+import com.sxx.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +15,22 @@ import java.util.Map;
  * Created by songxx1989 on 2017/7/15.
  */
 @Service
-public class QingdanServiceImpl implements QingdanService {
+public class InventoryServiceImpl implements InventoryService {
     @Autowired
-    private QingdanRepository repository;
+    private InventoryRepository repository;
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public List<Qingdan> findAll() {
+    public List<Inventory> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Qingdan save(Qingdan qingdan) {
-        qingdan.setStatus(0);
-        return repository.save(qingdan);
+    public Inventory save(Inventory inventory) {
+        inventory.setStatus(0);
+        return repository.save(inventory);
     }
 
     @Override
@@ -45,20 +45,20 @@ public class QingdanServiceImpl implements QingdanService {
         if (!repository.exists(id)) {
             throw new RuntimeException("清单" + id + "不存在！");
         }
-        Qingdan qingdan = repository.findOne(id);
-        qingdan.setUsers(users);
-        qingdan = repository.save(qingdan);
-        List<User> userList = userRepository.findByIdIn(qingdan.toUserIdList());
-        Map<String, Object> map = qingdan.toMap();
+        Inventory inventory = repository.findOne(id);
+        inventory.setUsers(users);
+        inventory = repository.save(inventory);
+        List<User> userList = userRepository.findByIdIn(inventory.toUserIdList());
+        Map<String, Object> map = inventory.toMap();
         map.put("uesrList", userList);
         return map;
     }
 
     @Override
     public Map<String, Object> findOne(Integer id) {
-        Qingdan qingdan = repository.findOne(id);
-        List<User> userList = userRepository.findByIdIn(qingdan.toUserIdList());
-        Map<String, Object> map = qingdan.toMap();
+        Inventory inventory = repository.findOne(id);
+        List<User> userList = userRepository.findByIdIn(inventory.toUserIdList());
+        Map<String, Object> map = inventory.toMap();
         map.put("userList", userList);
         return map;
     }

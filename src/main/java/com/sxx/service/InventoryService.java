@@ -1,6 +1,6 @@
 package com.sxx.service;
 
-import com.sxx.entity.Qingdan;
+import com.sxx.entity.Inventory;
 
 import java.util.List;
 import java.util.Map;
@@ -8,12 +8,12 @@ import java.util.Map;
 /**
  * Created by songxx1989 on 2017/7/15.
  */
-public interface QingdanService {
-    List<Qingdan> findAll();
+public interface InventoryService {
+    List<Inventory> findAll();
 
     Map<String, Object> findOne(Integer id);
 
-    Qingdan save(Qingdan qingdan);
+    Inventory save(Inventory inventory);
 
     Map<String, Object> updateUsers(Integer id, String users);
 

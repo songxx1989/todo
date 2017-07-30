@@ -13,23 +13,12 @@ public class Todo {
     @GeneratedValue
     private Integer id;
 
-    private Integer qid;
+    private Integer iid;
     private Integer pid;
 
     private String name;
     private Integer status;
     private String remark;
-
-    public Todo() {
-    }
-
-    public Todo(Integer qid, Integer pid, String name, Integer status, String remark) {
-        this.qid = qid;
-        this.pid = pid;
-        this.name = name;
-        this.status = status;
-        this.remark = remark;
-    }
 
     public Integer getId() {
         return id;
@@ -39,12 +28,12 @@ public class Todo {
         this.id = id;
     }
 
-    public Integer getQid() {
-        return qid;
+    public Integer getIid() {
+        return iid;
     }
 
-    public void setQid(Integer qid) {
-        this.qid = qid;
+    public void setIid(Integer iid) {
+        this.iid = iid;
     }
 
     public Integer getPid() {

@@ -9,5 +9,5 @@ import java.util.List;
  * Created by songxx1989 on 2017/7/15.
  */
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
-    List<Todo> findByQid(Integer qid);
+    List<Todo> findByIid(Integer qid);
 }
